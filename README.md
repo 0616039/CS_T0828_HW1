@@ -1,7 +1,7 @@
 # HW1_report
 Code for car brand classification.
 
-To read the detailed solution, please, refer to [the kaggle post](https://www.kaggle.com/c/cs-t0828-2020-hw1/overview)
+To read the detailed solution, please, refer to [the kaggle post](https://www.kaggle.com/c/cs-t0828-2020-hw1/overview)/
 [TOC]
 ## Installation
 > using google colab with google drive
