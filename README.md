@@ -2,6 +2,13 @@
 Code for car brand classification.
 
 To read the detailed solution, please, refer to [the kaggle post](https://www.kaggle.com/c/cs-t0828-2020-hw1/overview)
+- [Installaton](#First)
+- [Create Class File and Download Official Image](#second)
+- [Define The Class](#third)
+- [Buiding Model](#fourth)
+- [Train The Model](#fifth)
+- [Predict Testing Data](#sixth)
+- [Make Submission](#seventh)
 
 <h2 id="First">Installation</h2>
 
@@ -14,6 +21,7 @@ download = drive.CreateFile({'id': '1sRUp_jnLMUTBNDiWZYy_qKjjiorDcOt9'})
 download.GetContentFile('data.zip')
 !unzip data.zip</code></pre>
 <h2 id="second">Create Class File and Download Official Image</h2>
+
 > read traing_label.csv and move the image to the correct class file
 <pre><code>target_path = './data_test/'
 original_path = 'C:/Users/88697/hw1/data/raw/cs-t0828-2020-hw1/training_data/training_data/'
