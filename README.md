@@ -3,8 +3,8 @@ Code for car brand classification.
 
 To read the detailed solution, please, refer to [the kaggle post](https://www.kaggle.com/c/cs-t0828-2020-hw1/overview)
 
-[TOC]
-## Installation
+<h2 id="First">Installation</h2>
+
 > using google colab with google drive
 <pre><code>auth.authenticate_user()
 gauth = GoogleAuth()
@@ -13,7 +13,7 @@ drive = GoogleDrive(gauth)
 download = drive.CreateFile({'id': '1sRUp_jnLMUTBNDiWZYy_qKjjiorDcOt9'})
 download.GetContentFile('data.zip')
 !unzip data.zip</code></pre>
-## Create Class File and Download Official Image
+<h2 id="second">Create Class File and Download Official Image</h2>
 > read traing_label.csv and move the image to the correct class file
 <pre><code>target_path = './data_test/'
 original_path = 'C:/Users/88697/hw1/data/raw/cs-t0828-2020-hw1/training_data/training_data/'
@@ -29,7 +29,8 @@ with open('training_labels.csv',"rt", encoding="utf-8") as csvfile:
     			os.makedirs(target_path+row[1])
     			full_path = original_path+row[0]+'.jpg'
     			shutil.move(full_path,target_path + row[1] +'/')</code></pre>
-## Define The Class
+<h2 id="third">Define The Class</h2>
+
 > Use the folder name to define the class and the class order
 <pre><code>def find_classes(dir):
     classes = os.listdir(dir)
@@ -38,13 +39,14 @@ with open('training_labels.csv',"rt", encoding="utf-8") as csvfile:
     return classes, class_to_idx
 classes, c_to_idx = find_classes(data_dir+"/train")
 </code></pre>
+<h2 id="Fourth">Buiding Model</h2>
 
-## Buiding Model
 > I use the model resnet34 in pytorch
 <pre><code>model = models.resnet18(pretrained=True)
 num_ftrs = model.fc.in_features
 model.fc = nn.Linear(num_ftrs, 196)</code></pre>
-## Train The Model
+<h2 id="fifth">Train The Model</h2>
+
 > I use 10 epochs and print the tain result every fourty steps
 <pre><code>epochs = 10
 steps = 0
@@ -69,7 +71,8 @@ for e in range(epochs):
                 valid_loss, accuracy = validation(model, validloader, criterion)
             model.train()
             lrscheduler.step(accuracy * 100)</code></pre>
-## Predict Testing Data
+<h2 id="sixth">Predict Testing Data</h2>
+
 > predict the test data
 <pre><code>a = []
 te = []
@@ -87,7 +90,8 @@ for i in range(0,16182):
       _, index = torch.max(out, 1)
       percentage = torch.nn.functional.softmax(out, dim=1)[0] * 100
       a.append(classes[index[0]])</code></pre>
-## Make Submission
+<h2 id="seventh">Make Submission</h2>
+
 > write the prediction into the csv
 <pre><code>sample = pd.read_csv('answer.csv')
 sample['id'] = te
